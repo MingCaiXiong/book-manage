@@ -4,52 +4,24 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
+        <!--FreemarkerServlet用于解析ftl文件-->
         <servlet-name>freemarker</servlet-name>
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
-        <!--下面的配置freemarke的ftl文件或者html，jsp等页面的位置 -->
+        <!--定义模板的存储路径-->
         <init-param>
             <param-name>TemplatePath</param-name>
-            <param-value>/ftl</param-value>
+            <param-value>/WEB-INF/ftl</param-value>
         </init-param>
-        <!-- 可选配置，上面的为必须配置
-        <init-param>
-            <param-name>NoCache</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>ContentType</param-name>
-            <param-value>text/html; charset=UTF-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>template_update_delay</param-name>
-            <param-value>0</param-value>
-        </init-param>
+        <!--用于设置读取ftl文件时采用的字符集，从而避免中文乱码问题-->
         <init-param>
             <param-name>default_encoding</param-name>
-            <param-value>ISO-8859-1</param-value>
+            <param-value>UTF-8</param-value>
         </init-param>
-        <init-param>
-            <param-name>number_format</param-name>
-            <param-value>0.##########</param-value>
-        </init-param>
-         -->
-        <!-- 是否和服务器（tommcat)一起启动。-->
-        <load-on-startup>1</load-on-startup>
     </servlet>
-
+    <!--servlet映射：当我们访问的url以ftl结尾时，会自动截取前面的文件名，再在/WEB-INF/ftl目录中找到对应的文件，
+    进行解析和加载-->
     <servlet-mapping>
         <servlet-name>freemarker</servlet-name>
-        <url-pattern>*.ftl</url-pattern><!--页面的后缀，如果页面是ftl文件就写*.ftl,如果是html就写*.html-->
+        <url-pattern>*.ftl</url-pattern>
     </servlet-mapping>
-
-    <!--定义自己的Servlet文件-->
-    <!--  <servlet>
-          <servlet-name>FreeMarkerServlet</servlet-name>
-          <servlet-class>com.rabbit.FreeMarkerServlet</servlet-class>
-      </servlet>-->
-    <!--定义拦截的路径访问就用/freemarker-->
-<!--    <servlet-mapping>
-        <servlet-name>FreeMarkerServlet</servlet-name>
-        <url-pattern>/freemarker</url-pattern>
-    </servlet-mapping>-->
 </web-app>
