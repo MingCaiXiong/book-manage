@@ -18,6 +18,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
+            <!--只参与Maven 测试-->
             <scope>test</scope>
         </dependency>
         <dependency>
