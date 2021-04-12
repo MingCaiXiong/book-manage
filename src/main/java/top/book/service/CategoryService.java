@@ -11,5 +11,7 @@ public class CategoryService {
     public List<Category> queryAll( Category category){
        return  ( List<Category> ) MyBatisUtils.executeQuery(sqlSession -> sqlSession.getMapper(CategoryDao.class).queryAll(category));
     }
-
+    public int insert(Category category){
+        return (int)MyBatisUtils.executeUpdate(sqlSession -> sqlSession.getMapper(CategoryDao.class).insert(category));
+    };
 }

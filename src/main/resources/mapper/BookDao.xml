@@ -63,6 +63,23 @@
         </where>
     </select>
 
+    <resultMap id="rmBook" type="top.book.entity.Book">
+        <id property="cId" column="c_id"/>
+        <!--设置主键字段：属性名、字段名-->
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <!--设置collection：集合属性名、生成集合的SQL、关联主键-->
+        <collection property="category" select="top.book.dao.CategoryDao.queryById" column="c_id"/>
+    </resultMap>    <!--关联查询，resultMap结果映射到rmGoods-->
+    <select id="selectOneToMany" resultMap="rmBook">
+        select * from book
+        <where>
+            <if test="cId != null">
+                c_id = #{cId}
+            </if>
+        </where>
+    </select>
+
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into book.book(name, poster, create_time, update_time, price, score, c_id)

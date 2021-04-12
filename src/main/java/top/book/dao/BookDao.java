@@ -37,6 +37,7 @@ public interface BookDao {
      * @return 对象列表
      */
     List<Book> queryAll(Book book);
+    List<Book> selectOneToMany(@Param("cId")Integer cId);
 
     /**
      * 新增数据

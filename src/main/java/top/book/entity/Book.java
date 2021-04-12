@@ -30,6 +30,22 @@ public class Book implements Serializable {
     
     private Integer cId;
 
+    private Category category;
+
+    public Book() {
+    }
+
+    public Book(Category category) {
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Integer getId() {
         return id;
@@ -95,4 +111,8 @@ public class Book implements Serializable {
         this.cId = cId;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

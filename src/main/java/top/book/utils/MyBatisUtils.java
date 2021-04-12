@@ -37,5 +37,20 @@ public class MyBatisUtils {
         }
         return obj;
     }
+
+    public static Object executeUpdate(Function<SqlSession, Object> func) {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession(false);
+        Object obj = null;
+        try {
+            obj = func.apply(sqlSession);
+            sqlSession.commit();
+        }catch (Exception e){
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
+        }
+        return obj;
+    }
 }
 

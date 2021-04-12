@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 import top.book.entity.Category;
 import top.book.utils.MyBatisUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 
 public class CategoryDaoTest extends TestCase {
