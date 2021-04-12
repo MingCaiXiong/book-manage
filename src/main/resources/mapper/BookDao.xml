@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.book.dao.BookDao">
+
+    <resultMap id="BaseResultMap" type="top.book.entity.Book">
+        <!--@Table book-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="poster" column="poster" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="cId" column="c_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, name, poster, create_time, update_time, price, score, c_id
+        from book.book
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, name, poster, create_time, update_time, price, score, c_id
+        from book.book
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, name, poster, create_time, update_time, price, score, c_id
+        from book.book
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="poster != null and poster != ''">
+                and poster = #{poster}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="cId != null">
+                and c_id = #{cId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into book.book(name, poster, create_time, update_time, price, score, c_id)
+        values (#{name}, #{poster}, #{createTime}, #{updateTime}, #{price}, #{score}, #{cId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update book.book
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="poster != null and poster != ''">
+                poster = #{poster},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="cId != null">
+                c_id = #{cId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from book.book where id = #{id}
+    </delete>
+
+</mapper>
