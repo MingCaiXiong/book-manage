@@ -46,7 +46,7 @@
 <section class="page">
     <div class="container">
         <div id="fatie">
-            <a href="">
+            <a href="/book/create">
                 <button>新建</button>
             </a>
         </div>

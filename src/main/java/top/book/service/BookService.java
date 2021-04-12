@@ -23,7 +23,11 @@ public class BookService {
      */
     public List<Book> queryAll(Book book){
         return (List<Book>) MyBatisUtils.executeUpdate(sqlSession -> sqlSession.getMapper(BookDao.class).queryAll(book));
-    };
+    }
+
+    public int insert(Book book) {
+        return (int) MyBatisUtils.executeUpdate(sqlSession -> sqlSession.getMapper(BookDao.class).insert(book));
+    }
 
     public List<Book> selectOneToMany(Integer cId){
        return (List<Book>)MyBatisUtils.executeQuery(sqlSession -> sqlSession.getMapper(BookDao.class).selectOneToMany(cId));

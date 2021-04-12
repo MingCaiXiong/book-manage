@@ -43,6 +43,14 @@ public class Book implements Serializable {
         return category;
     }
 
+    public Book(String name, String poster, Double price, Integer score, Integer cId) {
+        this.name = name;
+        this.poster = poster;
+        this.price = price;
+        this.score = score;
+        this.cId = cId;
+    }
+
     public void setCategory(Category category) {
         this.category = category;
     }

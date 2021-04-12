@@ -3,28 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>新建</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/add.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/add.css">
     </head>
     <body>
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/book/list.do">
-                        慕课网图书管理
+                    <a class="navbar-brand" href="/book/list">
+                        图书管理
                     </a>
                 </div>
             </div>
         </nav>
         <div class="container">
             <div class="jumbotron">
-                <h1>Hello,Admin!</h1>
+                <h1>${error}</h1>
                 <p>请小心的新增图书记录，要是建了一个错误的就不好了。。。</p>
             </div>
             <div class="page-header">
                 <h3><small>新建</small></h3>
             </div>
-            <form class="form-horizontal" action="/book/add.do" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="/book/create" method="post" enctype="multipart/form-data">
                 <div id="content">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">名称 ：</label>
@@ -36,9 +36,9 @@
                         <label class="col-sm-2 control-label">分类 ：</label>
                         <select name="categoryId" class="col-sm-2 form-control" style="width: auto">
                                 <!-- 此处数据需要从数据库中读取 -->
-                                <option id="1" value="Java">Java</option>
-                                <option id="2" value="Java">前端</option>
-                           
+                            <#list nav as n>
+                                <option id="${n.id}" title="val-${n.id}" value="${n.id}">${n}</option>
+                           </#list>
                         </select>
                     </div>
                     <div class="form-group">

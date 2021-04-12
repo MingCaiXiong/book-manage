@@ -37,6 +37,13 @@ public interface BookDao {
      * @return 对象列表
      */
     List<Book> queryAll(Book book);
+
+    /**
+     * 根据分类查询数据
+     *
+     * @param cId
+     * @return
+     */
     List<Book> selectOneToMany(@Param("cId")Integer cId);
 
     /**
